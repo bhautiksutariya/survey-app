@@ -41,28 +41,6 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @ApiOperation(value = "Get Current User", tags = {"User Resource"})
-    @GetMapping("/user/me")
-    @PreAuthorize("hasRole('USER')")
-    public UserDetailsDTO getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        UserDetailsDTO userSummary = new UserDetailsDTO(currentUser.getId(), currentUser.getUsername(), currentUser.getName());
-        return userSummary;
-    }
-
-    @ApiOperation(value = "Is Username Available", tags = {"User Resource"})
-    @GetMapping("/user/checkUsernameAvailability")
-    public UserAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
-        Boolean isAvailable = !userRepository.existsByUsername(username);
-        return new UserAvailability(isAvailable);
-    }
-
-    @ApiOperation(value = "Is Email Available", tags = {"User Resource"})
-    @GetMapping("/user/checkEmailAvailability")
-    public UserAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
-        Boolean isAvailable = !userRepository.existsByEmail(email);
-        return new UserAvailability(isAvailable);
-    }
-
     @ApiOperation(value = "User Profile", tags = {"User Resource"})
     @GetMapping("/users/{username}")
     public UserProfile getUserProfile(@PathVariable(value = "username") String username) {
