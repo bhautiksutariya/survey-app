@@ -24,7 +24,7 @@ public class SurveyUpdateRequest {
 
 	@ApiModelProperty(value = "Survey Options",position = 2)
     @NotNull
-    @Size(min = 2)
+    @Size(min = 2,max = 6,message = "Choices must be betweeb 2 and 6")
     @Valid
     private List<ChoiceRequestDTO> choices;
 

@@ -31,6 +31,7 @@ import io.swagger.annotations.ApiOperation;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.time.Instant;
 import java.util.Collections;
 
 @RestController
@@ -89,6 +90,9 @@ public class AuthenticationController {
     @ApiOperation(value = "Login", tags = {"Authentication Resource"})
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest) {
+
+        Instant instant=Instant.now();
+        System.out.println("Test:"+instant);
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(

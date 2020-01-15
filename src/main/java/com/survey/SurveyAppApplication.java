@@ -21,7 +21,7 @@ public class SurveyAppApplication {
 	
 	@PostConstruct
 	void init() {
-		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+		TimeZone.setDefault(TimeZone.getTimeZone("IST"));
 	}
 
 	public static void main(String[] args) {
